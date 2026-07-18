@@ -37,3 +37,7 @@ Please describe:
 - Example use case
 
 Thank you for helping improve the Audio Library Toolkit!
+
+## Contact
+
+GitHub Issues are the preferred way to report bugs and request new features.
