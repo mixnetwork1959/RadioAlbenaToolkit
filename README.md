@@ -130,3 +130,14 @@ silence_report.csv
 - BPM Scanner
 - Playlist Analyzer
 - Tag Normalizer
+
+
+---
+
+## Support the Project
+
+The Audio Library Toolkit is free and open source.
+
+If this project saves you time and you would like to support future development, you can make a voluntary donation.
+
+❤️ PayPal: https://paypal.me/RaymundusUmmels
