@@ -63,11 +63,36 @@ The report will be written to
 silence_report.csv
 ```
 
-## Roadmap
+## 🚀 Roadmap
 
-- Multi CPU support
-- Resume after interruption
-- Auto trim
-- HTML report
-- ReplayGain
-- BPM Scanner
+### Version 0.1.0
+- [x] Scan music folders
+- [x] Detect intro silence
+- [x] Detect outro silence
+- [x] CSV export
+
+### Version 0.2.0
+- [ ] Multi-core scanning
+- [ ] ETA (remaining time)
+- [ ] Continuous CSV writing
+- [ ] Better error handling
+
+### Version 0.3.0
+- [ ] Resume interrupted scan
+- [ ] Sort by intro/outro
+- [ ] Detect silence start position
+- [ ] Scan statistics
+
+### Version 0.4.0
+- [ ] Automatic intro trimming
+- [ ] Automatic outro trimming
+- [ ] Preserve folder structure
+- [ ] Dry-run mode
+
+### Planned Features
+- [ ] HTML report
+- [ ] BPM detection
+- [ ] ReplayGain analysis
+- [ ] Loudness analysis
+- [ ] Cover artwork detection
+- [ ] Duplicate finder
