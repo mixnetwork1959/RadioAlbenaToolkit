@@ -96,3 +96,19 @@ silence_report.csv
 - [ ] Loudness analysis
 - [ ] Cover artwork detection
 - [ ] Duplicate finder
+
+
+# Changelog
+
+## 0.1.0
+
+- Initial release
+- Silence detection
+- CSV export
+
+## Upcoming
+
+- Multi-core scan
+- ETA
+- Resume
+- Auto trim
