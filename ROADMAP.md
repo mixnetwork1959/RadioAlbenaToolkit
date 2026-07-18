@@ -24,3 +24,10 @@
 - [ ] BPM scanner
 - [ ] ReplayGain analyzer
 - [ ] Loudness analyzer
+
+## Version 0.6.0
+
+- [ ] Smart Analysis Cache
+- [ ]Cache stored as JSON
+- [ ] Automatic reuse of previous scan results
+- [ ] Analyze only new or changed files
