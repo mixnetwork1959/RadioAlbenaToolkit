@@ -122,9 +122,11 @@ silence_report.csv
 - Silence detection
 - CSV export
 
-## Upcoming
+## Planned Tools
 
-- Multi-core scan
-- ETA
-- Resume
-- Auto trim
+- Duplicate Finder
+- Audio Trimmer
+- ReplayGain Analyzer
+- BPM Scanner
+- Playlist Analyzer
+- Tag Normalizer
