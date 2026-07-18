@@ -2,6 +2,10 @@
 
 Scans MP3, FLAC, WAV, M4A, AAC and OGG files for silence at the beginning and end.
 
+Audio Library Toolkit is a collection of Python tools for managing, analyzing and optimizing large audio libraries.
+
+The first included tool is the Silence Scanner, which detects silence at the beginning and end of audio files.
+
 ## Features
 
 - Scan complete music library
