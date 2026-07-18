@@ -1,1 +1,27 @@
+Outro detection calculates incorrect silence duration
 
+## Bug
+
+Some songs are reported with extremely long outro silence although they contain music until the end.
+
+### Example
+
+Emerson, Lake & Palmer - Fanfare for the Common Man
+
+Reported outro:
+556.71 seconds
+
+Actual result:
+The song contains music almost until the end. There is no 9-minute silence.
+
+### Possible cause
+
+The current algorithm calculates:
+
+outro = duration - last_silence_start
+
+This may use a silence detected earlier in the song instead of verifying that the silence actually reaches the end of the file.
+
+### Expected behavior
+
+Only report outro silence if the detected silence starts near the end of the file and continues until the file ends.
