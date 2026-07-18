@@ -6,6 +6,12 @@ Audio Library Toolkit is a collection of Python tools for managing, analyzing an
 
 The first included tool is the Silence Scanner, which detects silence at the beginning and end of audio files.
 
+## Requirements
+
+- Windows 10 / 11
+- Python 3.11+
+- FFmpeg 7.x or newer
+
 ## Features
 
 - Scan complete music library
