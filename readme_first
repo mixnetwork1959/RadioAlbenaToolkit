@@ -1,0 +1,73 @@
+# Radio Albena Silence Scanner
+
+Scans MP3, FLAC, WAV, M4A, AAC and OGG files for silence at the beginning and end.
+
+## Features
+
+- Scan complete music library
+- Detect intro silence
+- Detect outro silence
+- CSV report
+- Fast FFmpeg based detection
+- Works recursively
+
+## Requirements
+
+- Windows 10 / 11
+- Python 3.11 or newer
+- FFmpeg
+
+## Install Python
+
+https://www.python.org/downloads/
+
+During installation enable
+
+✔ Add Python to PATH
+
+## Install FFmpeg
+
+Download
+
+https://www.gyan.dev/ffmpeg/builds/
+
+Extract to
+
+C:\ffmpeg
+
+Folder should contain
+
+C:\ffmpeg\
+    ffmpeg.exe
+    ffprobe.exe
+
+## Run
+
+Open CMD
+
+```
+python RadioAlbenaSilenceScanner.py
+```
+
+Choose your music folder
+
+Example
+
+```
+D:\Music
+```
+
+The report will be written to
+
+```
+silence_report.csv
+```
+
+## Roadmap
+
+- Multi CPU support
+- Resume after interruption
+- Auto trim
+- HTML report
+- ReplayGain
+- BPM Scanner
