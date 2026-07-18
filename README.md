@@ -1,4 +1,4 @@
-# Radio Albena Silence Scanner
+#  Radio Albena Toolkit
 
 Scans MP3, FLAC, WAV, M4A, AAC and OGG files for silence at the beginning and end.
 
