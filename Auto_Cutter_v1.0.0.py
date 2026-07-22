@@ -4,7 +4,7 @@
  Audio Library Toolkit
 ---------------------------------------------------------
  Tool      : Auto Cutter
- Version   : 0.3.3
+ Version   : 0.1.0
  Author    : Raymond Ummels
  License   : MIT
 =========================================================
