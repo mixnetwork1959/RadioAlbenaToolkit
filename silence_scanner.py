@@ -4,17 +4,14 @@
  Audio Library Toolkit
 ---------------------------------------------------------
  Tool      : Silence Scanner
- Version   : 0.4.0
+ Version   : 1.0.0
  Author    : Raymond Ummels
  License   : MIT
 =========================================================
 
-Ultra Fast Intro / Outro Scanner
+Ultra Fast Silence Scanner
 
-Scans only:
-
-- Intro
-- Outro
+Detects excessive silence at the beginning and end of audio files.
 
 Optimized for Radio Libraries
 """
@@ -23,6 +20,7 @@ import csv
 import os
 import re
 import subprocess
+import shutil
 import sys
 import time
 
@@ -32,7 +30,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # VERSION
 # =========================================================
 
-VERSION = "0.4.0"
+VERSION = "1.0.0"
 
 # =========================================================
 # SETTINGS
@@ -42,6 +40,8 @@ FFMPEG = r"C:\ffmpeg\ffmpeg.exe"
 FFPROBE = r"C:\ffmpeg\ffprobe.exe"
 
 CSV_FILE = "silence_report.csv"
+
+CORRUPT_FOLDER = "Corrupt_Files"
 
 EXTENSIONS = (
     ".mp3",
@@ -58,8 +58,8 @@ EXTENSIONS = (
 INTRO_SCAN = 20
 OUTRO_SCAN = 60
 
-MAX_INTRO = 15.0
-MAX_OUTRO = 45.0
+MAX_INTRO = 5.0
+MAX_OUTRO = 5.0
 
 SILENCE_DB = -40
 MIN_SILENCE = 2.0
@@ -80,6 +80,8 @@ stats = {
     "files":0,
 
     "errors":0,
+
+    "corrupt":0,
 
     "long_intro":0,
 
@@ -133,6 +135,26 @@ def audio_files(folder):
                 yield os.path.join(root,file)
 
 
+
+def ensure_corrupt_folder():
+    os.makedirs(CORRUPT_FOLDER, exist_ok=True)
+
+def move_corrupt_file(filename):
+    ensure_corrupt_folder()
+    base = os.path.basename(filename)
+    dest = os.path.join(CORRUPT_FOLDER, base)
+    name, ext = os.path.splitext(base)
+    i = 1
+    while os.path.exists(dest):
+        dest = os.path.join(CORRUPT_FOLDER, f"{name}_{i}{ext}")
+        i += 1
+    try:
+        shutil.move(filename, dest)
+        stats["corrupt"] += 1
+        return dest
+    except Exception:
+        return None
+
 # =========================================================
 # FFmpeg
 # =========================================================
@@ -155,7 +177,7 @@ def run_ffmpeg(cmd):
 
     )
 
-    return result.stderr
+    return result.returncode, result.stderr
 
 
 # =========================================================
@@ -252,7 +274,10 @@ def scan_file(filename):
         "-"
     ]
 
-    log = run_ffmpeg(cmd)
+    rc, log = run_ffmpeg(cmd)
+    if rc != 0 or "Invalid data" in log:
+        move_corrupt_file(filename)
+        return (filename,0.0,0.0,"ERROR")
 
     blocks = parse_silence(log)
 
@@ -295,7 +320,10 @@ def scan_file(filename):
         "-"
     ]
 
-    log = run_ffmpeg(cmd)
+    rc, log = run_ffmpeg(cmd)
+    if rc != 0 or "Invalid data" in log:
+        move_corrupt_file(filename)
+        return (filename,0.0,0.0,"ERROR")
 
     blocks = parse_silence(log)
 
@@ -537,6 +565,7 @@ def print_summary(elapsed):
     print(f"Long Intro    : {stats['long_intro']}")
     print(f"Bad Outro     : {stats['bad_outro']}")
     print(f"Both          : {stats['both']}")
+    print(f"Corrupt Files : {stats['corrupt']}")
     print(f"Errors        : {stats['errors']}")
 
     print("-" * 60)

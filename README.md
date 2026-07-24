@@ -1,5 +1,7 @@
 # Audio Library Toolkit – Silence Scanner
 
+Tested on a real-world music library containing 12,950 audio files.
+
 Ultra-fast intro and outro silence detection for large audio libraries.
 
 Originally developed for **Radio Albena**, this tool scans thousands of audio files and identifies songs with long intros or outros before they are imported into radio automation software.
